@@ -9,6 +9,8 @@
 </head>
 <body>
   
+    {% block content %}
+
   <!-- navbar -->
   <div class="container-fluid">
     <!-- As a link -->
@@ -20,22 +22,210 @@
   <!-- prediction form -->
   <div class="container-fluid">
     
-    <form action="">
-
-      <div class="form-row justify-content-md-center mt-3">
+    <form action="/" method="POST">
+      {% csrf_token %}
+      <div class="form-row justify-content-md-center mt-4">
         <p class="mt-2 mr-2">Choose Model </p>
         <div class="form-group">
-          <select id="chooseModel" class="form-control">
-              <option selected>KNN</option>
+          <!-- choose model -->
+          <select id="chooseModel" class="form-control" name="modelChosen">
+              <option>KNN</option>
               <option>Naive Bayes</option>
               <option>K-means</option>
           </select>
         </div>
       </div>
 
+      <hr>
+
+      <div class="form-row justify-content-md-center">
+          <p class="mt-2 mr-2 ">Choose Attributes</p>
+      </div>
+
+<!-- container for attributes -->
+
+    <div class="container">
+
+      <!-- row 1 -->
+
+        <div class="form-row justify-content-md-center mt-4">
+
+            <div class="col">
+                <p class="mt-2 mr-2">sourceID </p>
+                <div class="form-group mx-2">
+                  <!-- choose model -->
+                  <select id="sourceID" class="form-control" name="sourceID">
+                      {% for key, value in ddown.sourceID.items %}
+                        <option value="{{ value }}">{{ key }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+            </div>
+            
+            <div class="col">
+                <p class="mt-2 mr-2">sourceAddress </p>
+                <div class="form-group mx-2">
+                  <!-- choose model -->
+                  <select id='sourceAddress' class="form-control" name='sourceAddress'>
+                      {% for key, value in ddown.sourceAddress.items %}
+                        <option value="{{ value }}">{{ key }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+            </div>
+            
+            <div class="col">
+                <p class="mt-2 mr-2">sourceType </p>
+                <div class="form-group mx-2">
+                  <!-- choose model -->
+                  <select id='sourceType' class="form-control" name='sourceType'>
+                      {% for key, value in ddown.sourceType.items %}
+                        <option value="{{ value }}">{{ key }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+            </div>
+            
+          </div>
+
+        <!-- row 2 -->
+
+          <div class="form-row justify-content-md-center mt-4">
+
+              <div class="col">
+                  <p class="mt-2 mr-2">sourceLocation </p>
+                  <div class="form-group mx-2">
+                    <!-- choose model -->
+                    <select id="sourceLocation" class="form-control" name="sourceLocation">
+                        {% for key, value in ddown.sourceLocation.items %}
+                          <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+              </div>
+              
+              <div class="col">
+                  <p class="mt-2 mr-2">destinationServiceAddress </p>
+                  <div class="form-group mx-2">
+                    <!-- choose model -->
+                    <select id='destinationServiceAddress' class="form-control" name='destinationServiceAddress'>
+                        {% for key, value in ddown.destinationServiceAddress.items %}
+                          <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+              </div>
+              
+              <div class="col">
+                  <p class="mt-2 mr-2">destinationServiceType </p>
+                  <div class="form-group mx-2">
+                    <!-- choose model -->
+                    <select id='destinationServiceType' class="form-control" name='destinationServiceType'>
+                        {% for key, value in ddown.destinationServiceType.items %}
+                          <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+              </div>
+
+            </div>
+
+          <!-- row 3 -->
+
+          <div class="form-row justify-content-md-center mt-4">
+
+              <div class="col">
+                  <p class="mt-2 mr-2">destinationLocation </p>
+                  <div class="form-group mx-2">
+                    <!-- choose model -->
+                    <select id="destinationLocation" class="form-control" name="destinationLocation">
+                        {% for key, value in ddown.destinationLocation.items %}
+                          <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+              </div>
+              
+              <div class="col">
+                  <p class="mt-2 mr-2">accessedNodeAddress </p>
+                  <div class="form-group mx-2">
+                    <!-- choose model -->
+                    <select id='accessedNodeAddress' class="form-control" name='accessedNodeAddress'>
+                        {% for key, value in ddown.accessedNodeAddress.items %}
+                          <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+              </div>
+              
+              <div class="col">
+                  <p class="mt-2 mr-2">accessedNodeType </p>
+                  <div class="form-group mx-2">
+                    <!-- choose model -->
+                    <select id='accessedNodeType' class="form-control" name='accessedNodeType'>
+                        {% for key, value in ddown.accessedNodeType.items %}
+                          <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+              </div>
+
+            </div>
+
+        <!-- row 4 -->
+      
+        <div class="form-row justify-content-md-center mt-4">
+
+            <div class="col">
+                <p class="mt-2 mr-2">operation </p>
+                <div class="form-group mx-2">
+                  <!-- choose model -->
+                  <select id="operation" class="form-control" name="operation">
+                      {% for key, value in ddown.operation.items %}
+                        <option value="{{ value }}">{{ key }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+            </div>
+            
+            <div class="col">
+                <p class="mt-2 mr-2">value </p>
+                <div class="form-group mx-2">
+                  <!-- choose model -->
+                  <input type="text" class="form-control" id='value' name='value'>
+                </div>
+            </div>
+            
+            <div class="col">
+                <p class="mt-2 mr-2">timestamp </p>
+                <div class="form-group mx-2">
+                  <!-- choose model -->
+                  <input type="text" class="form-control" id='timestamp' name='timestamp'>
+                </div>
+            </div>
+
+          </div>
+    </div>
+      
+        <hr>
+
+      <div class="form-row justify-content-md-center mt-3">
+        <!-- submit button -->
+        <button type="submit" class="btn btn-primary">Predict</button>
+      </div>
+
     </form>
 
+    <hr>
+
+    {% if model %}
+
+    <center>Predicted value</center>
+
+    {% endif %}
   </div>    
+
+  {% endblock %}
 
 </body>
 </html>
