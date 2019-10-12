@@ -210,9 +210,42 @@
     {% if ip_values %}
 
     <center>
-      {{ ip_values }}
-      {{ form_data }}
-      {{ prediction }}
+        {% if prediction == 'normal' %}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Normal activity</h4>
+        {% else %}
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Uh Oh! Intrusion detected</h4>
+            <p> Type of anomaly: {{ prediction }}</p>
+        {% endif %}
+        
+          <hr>
+          <h6>scroll to see details:</h6>
+          <div class="mt-2 container">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Parameter</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for key, value in form_data.items %}
+                
+                <tr>
+                  <td>{{key}}</td>
+                  <td>{{value}}</td>
+                </tr>    
+                  
+              {% endfor %}
+              </tbody>
+            </table>
+            <p>encoded values to the model: </p>{{ip_values}}
+          </div>
+        </div>
+      
+      
+      
     </center>
 
     {% endif %}

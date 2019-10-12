@@ -56,7 +56,7 @@ def index(request):
 
     # predict
     prediction = knn_model.predict([ip_values])
-
+    prediction = [key for key, value in ddown['normality'].items() if value==prediction[0]][0] #reverse lookup in normality dictionary (7=normal)
     
     return render(request, 'ids_app/index.html', {'ip_values': ip_values, 'ddown': ddown, 'form_data': form_data, 'prediction': prediction})
   # template = loader.get_template('ids_app/index.html')
