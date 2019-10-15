@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>graphs</title>
+</head>
+<body>
+  {% block content %}
+  {% load staticfiles %}
+    <!-- navbar -->
+    <div class="container-fluid">
+      <!-- As a link -->
+      <nav class="navbar navbar-light bg-light h1 py-3" id="ids_navbar">
+          <a class="navbar-brand" href="index">IDS - ds2os</a>
+          <a href="graphs">
+            <button type="button" class="btn btn-dark float-right">Graphs</button>
+          </a>
+      </nav>
+    </div>
+
+    <!-- carousel --------------------------------------------------------------------------------------------->
+    <div class="container-fluid">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Pair plot</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Plot of all the attributes with every other attribute</h6>
+          <img src="/static/images/pairplot.png" alt="pair plot" class="card-img-top">
+        </div>
+      </div>
+
+    </div>
+
+  {% endblock %}
+</body>
+</html>
